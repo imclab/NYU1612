@@ -44,6 +44,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Fish.cs" />
+     <Compile Include="Assets\Scripts\FishController.cs" />
+     <Compile Include="Assets\Scripts\GroundJump.cs" />
+     <Compile Include="Assets\Scripts\MazeSolver.cs" />
      <Compile Include="Assets\trigger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

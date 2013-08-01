@@ -142,18 +142,17 @@ public class Graph : MonoBehaviour {
 		
 		Rect GraphArea = new Rect(155, (GraphWindow.height / 16) * -1 + 80, GraphWindow.width - 300, (GraphWindow.height / 16)* 11 + 2);
 		
-		float pointSpace = GraphArea.width / 7;
-		
+		float pointSpace = (GraphArea.width - 10) / (Int32.Parse(lineGraphEndMonthText) - Int32.Parse(lineGraphStartMonthText));
 		GUI.BeginGroup(GraphArea);
 		GUI.Box(new Rect(0,0,1000,1000),"");
-
 	
-		int count = 0;
+		
 		Dictionary<int, float> animalBiomasses;
 		float tempBiomass = 0f;
 		
 		foreach(string animal in SelectedAnimalsList)
 		{
+			int count = 1;
 			int month = Int32.Parse(lineGraphStartMonthText);
 			AnimalDictionary.TryGetValue(animal, out animalBiomasses);
 			while( month <= Int32.Parse(lineGraphEndMonthText))
@@ -164,18 +163,20 @@ public class Graph : MonoBehaviour {
 					texture.SetPixel(0,0,colorDictionary[animal]);
 					texture.Apply();
 					style.normal.background = texture;
-					GUI.Box(new Rect((pointSpace * month - 1), (GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass) - 1 ), 2, 2),"");
+					
+					GUI.Box(new Rect((pointSpace * (month - Int32.Parse(lineGraphStartMonthText))), (GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass) - 1 ), 2, 2),texture);
 					float tempBiomass2;
 					if(animalBiomasses.TryGetValue(month + 1, out tempBiomass2))
 					{
 						tempBiomass2 = tempBiomass2 / maxBiomass;
 						//Drawing.DrawLine(new Vector2((int)(pointSpace * month), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass))), new Vector2((int)(pointSpace * (month + 1)), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass2))));
-						Drawing.DrawLine(new Vector2((int)(pointSpace * month), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass))), new Vector2((int)(pointSpace * (month + 1)), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass2))), colorDictionary[animal]);
+						Drawing.DrawLine(new Vector2((int)(pointSpace * (month - Int32.Parse(lineGraphStartMonthText))), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass))), new Vector2((int)(pointSpace * (count)), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass2))), colorDictionary[animal]);
 					}
 				}
 				month++;
+				count++;
+
 			}
-			count++;
 			
 		}
 		GUI.EndGroup();
