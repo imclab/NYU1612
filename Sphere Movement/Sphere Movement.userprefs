@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\Spawner.cs" Line="7" Column="26" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="114" Column="14" />
-      <File FileName="Assets\Scripts\PlayerMove.cs" Line="25" Column="62" />
+      <File FileName="Assets\Scripts\PlayerFollower.cs" Line="7" Column="25" />
+      <File FileName="Assets\Scripts\PlayerMove.cs" Line="25" Column="67" />
+      <File FileName="Assets\Scripts\Spawner.cs" Line="20" Column="4" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="45" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

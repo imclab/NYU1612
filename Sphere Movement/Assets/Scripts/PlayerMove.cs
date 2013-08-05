@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour {
 
-	public float speed = 1f;
+	public float speed = .5f;
 	public Transform planet;
 	
 	// Use this for initialization
@@ -17,12 +17,12 @@ public class PlayerMove : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			transform.RotateAround (planet.position, transform.forward, 1);
+			transform.RotateAround (planet.position, transform.forward, .5f);
 		}
         if (Input.GetKeyDown(KeyCode.D))
 		{
 			
-			transform.RotateAround (planet.position, transform.forward, -1);
+			transform.RotateAround (planet.position, transform.forward, -.5f);
 		}
 	}
 }

@@ -20,7 +20,13 @@ public class Spawner : MonoBehaviour {
 		{
 			delay = 0.1f;
 			GameObject go = (GameObject)Instantiate(prefab, transform.position, transform.rotation);
-			go.transform.parent = transform;
+			go.transform.parent = planet;
+			
+			go = (GameObject)Instantiate(prefab, transform.position, transform.rotation);
+			go.transform.parent = planet;
+			
+			go = (GameObject)Instantiate(prefab, transform.position, transform.rotation);
+			go.transform.parent = planet;
 			
 		}
 	}

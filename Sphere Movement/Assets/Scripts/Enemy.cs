@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour {
     private Quaternion qTo;
     public float speed= 5.0f;
 	
+	private float[] startPos = {0f, .5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f, 5f, 5.5f, 6f, 6.5f, 7f, 7.5f, 8f, 8.5f, 9f, 9.5f,
+								-.5f, -1f, -1.5f, -2f, -2.5f, -3f, -3.5f, -4f, -4.5f, -5f, -5.5f, -6f, -6.5f, -7f, -7.5f, -8f, -8.5f, -9f, -9.5f};
+	
 	// Use this for initialization
 	void Start () {
 		direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
@@ -30,6 +33,7 @@ public class Enemy : MonoBehaviour {
         transform.parent = trCenter;
         qTo = transform.localRotation;
 		
+		
 	}
 	
 	
@@ -38,53 +42,11 @@ public class Enemy : MonoBehaviour {
     {
 		if(start == 1)
 		{
-			int i = Random.Range(1,16);
+			int i = Random.Range(0,39);
 		
-			if(i == 1)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -3);
-			}else if(i == 2)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -2);
-			}else if(i == 3)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -1);
-			}else if(i == 4)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 1);
-			}else if(i == 5)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 2);
-			}else if(i == 6)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 3);
-			}else if(i == 7)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 4);
-			}else if(i == 8)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -4);
-			}else if(i == 9)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 5);
-			}else if(i == 10)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -5);
-			}else if(i == 11)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -6);
-			}else if(i == 12)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 6);
-			}else if(i == 13)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, -7);
-			}else if(i == 14)
-			{
-				transform.RotateAround (transform.parent.position, -Vector3.up, 7);
-			}
-			
-				start = 0;
+			transform.RotateAround (transform.parent.position, transform.forward, startPos[i]);
+		
+			start = 0;
 		}
         
  
