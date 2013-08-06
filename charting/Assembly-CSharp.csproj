@@ -49,9 +49,6 @@
      <Compile Include="Assets\Grapher1.cs" />
      <Compile Include="Assets\Line.cs" />
      <Compile Include="Assets\Stats.cs" />
-     <Compile Include="Assets\example.cs" />
-     <Compile Include="Assets\linetwod.cs" />
-     <Compile Include="Assets\test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

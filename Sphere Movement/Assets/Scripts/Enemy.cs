@@ -13,25 +13,17 @@ public class Enemy : MonoBehaviour {
 	int start = 1;
 	
 	private Transform sphere;
-    private Transform trCenter;
-    private Quaternion q; 
-    private Quaternion qTo;
+
     public float speed= 5.0f;
 	
-	private float[] startPos = {0f, .5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f, 5f, 5.5f, 6f, 6.5f, 7f, 7.5f, 8f, 8.5f, 9f, 9.5f,
-								-.5f, -1f, -1.5f, -2f, -2.5f, -3f, -3.5f, -4f, -4.5f, -5f, -5.5f, -6f, -6.5f, -7f, -7.5f, -8f, -8.5f, -9f, -9.5f};
+	//private float[] startPos = {0f, .5f, 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f, 4.5f, 5f, 5.5f, 6f, 6.5f, 7f, 7.5f, 8f, 8.5f, 9f, 9.5f,
+	//							-.5f, -1f, -1.5f, -2f, -2.5f, -3f, -3.5f, -4f, -4.5f, -5f, -5.5f, -6f, -6.5f, -7f, -7.5f, -8f, -8.5f, -9f, -9.5f};
 	
 	// Use this for initialization
 	void Start () {
 		direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
 		sphere = GameObject.Find("Planet").transform;
-        q = Quaternion.AngleAxis(5.0f, transform.up);
-        trCenter = new GameObject().transform;
-        trCenter.rotation = sphere.rotation;
-        trCenter.parent = sphere;
-        trCenter.position = sphere.position;
-        transform.parent = trCenter;
-        qTo = transform.localRotation;
+
 		
 		
 	}
@@ -40,14 +32,14 @@ public class Enemy : MonoBehaviour {
 	
 	void LateUpdate()    
     {
-		if(start == 1)
-		{
-			int i = Random.Range(0,39);
-		
-			transform.RotateAround (transform.parent.position, transform.forward, startPos[i]);
-		
-			start = 0;
-		}
+//		if(start == 1)
+//		{
+//			int i = Random.Range(0,39);
+//		
+//			transform.RotateAround (transform.parent.position, transform.forward, startPos[i]);
+//		
+//			start = 0;
+//		}
         
  
         // Translate left/right with A/D. Bad keys but quick test.
@@ -76,20 +68,25 @@ public class Enemy : MonoBehaviour {
 			KillSelf();
 		}else if(hit.tag == "Player")
 		{
+			AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemySwordDeathSound(), transform.position);
 			KillSelf();
 		}
 		
 	}
 	
   	void OnMouseDown() {
+		AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemyArrowDeathSound(), transform.position);
         KillSelf();
     }
 	
 	void KillSelf()
 	{
 		Destroy(gameObject, .3f);
+		
 		MeshRenderer mr = transform.gameObject.GetComponent<MeshRenderer>();
 		mr.enabled = false;
+		Collider cr = transform.gameObject.GetComponent<Collider>();
+		cr.enabled = false;
 		bloodParticle.Play();
 	}
  

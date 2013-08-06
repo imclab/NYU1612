@@ -118,7 +118,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5e800d287d4b80045909d068194e7a87, type: 2}
+  - {fileID: 2100000, guid: c85eb725d6ae33947a563a3422d31e7f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -139,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 1602094617}
   m_GameObject: {fileID: 210629623}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.77932024, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -263,8 +263,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519115676}
-  m_LocalRotation: {x: .105603874, y: 0, z: 0, w: .994408309}
-  m_LocalPosition: {x: 0, y: -20.1691895, z: 179.311813}
+  m_LocalRotation: {x: .0784591064, y: 0, z: 0, w: .996917367}
+  m_LocalPosition: {x: 0, y: -12.411499, z: 140.607269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 591268025}
@@ -281,6 +281,8 @@ MonoBehaviour:
   prefab: {fileID: 100000, guid: b300dca79348ceb43bb0da4173127dcb, type: 2}
   planet: {fileID: 210629627}
   delay: 2
+  badguy: {fileID: 100000, guid: b300dca79348ceb43bb0da4173127dcb, type: 2}
+  wall: {fileID: 100000, guid: 000339cbf90c10d4cbdf20787cc06a31, type: 2}
 --- !u!1 &591268019
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +374,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 591268019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 820.5, z: 0}
+  m_LocalPosition: {x: 0, y: 828.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 519115680}
@@ -390,6 +392,7 @@ GameObject:
   - 23: {fileID: 889361552}
   - 54: {fileID: 889361555}
   - 114: {fileID: 889361557}
+  - 82: {fileID: 889361556}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -404,7 +407,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 889361550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 820.5, z: 0}
+  m_LocalPosition: {x: 0, y: 828.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 332549582}
@@ -463,6 +466,62 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &889361556
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 889361550}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 408faddfb39b9e54aaf57781a2eb9c64, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .187000006
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 120
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &889361557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +548,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17eefb4a1ddd02448b5bb96478d5487c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.77932024
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17eefb4a1ddd02448b5bb96478d5487c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -514,7 +573,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 17eefb4a1ddd02448b5bb96478d5487c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5e800d287d4b80045909d068194e7a87, type: 2}
+      objectReference: {fileID: 2100000, guid: c85eb725d6ae33947a563a3422d31e7f, type: 2}
     - target: {fileID: 100000, guid: 17eefb4a1ddd02448b5bb96478d5487c, type: 3}
       propertyPath: m_Name
       value: Planet
@@ -548,6 +607,7 @@ GameObject:
   - 92: {fileID: 1791207635}
   - 124: {fileID: 1791207634}
   - 81: {fileID: 1791207633}
+  - 114: {fileID: 1791207637}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -615,6 +675,25 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
+--- !u!114 &1791207637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791207631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23467161e563cfa41894b0fd16c7b623, type: 3}
+  m_Name: 
+  enemySwordDeathSounds: []
+  enemyArrowDeathSounds: []
+  playerWallHitSounds: []
+  sword1: {fileID: 8300000, guid: deed48fa05b53374f927387a9438d296, type: 3}
+  sword2: {fileID: 8300000, guid: fa41df0365d3c52429ee405c38774191, type: 3}
+  sword3: {fileID: 8300000, guid: 09e7986f86d09d542810e7a2a6cd4c89, type: 3}
+  arrow1: {fileID: 8300000, guid: d4ffb7a75f5f96b44a47bab55712c9e7, type: 3}
+  arrow2: {fileID: 8300000, guid: b9bfb77e9ec4dcc4da80f5160cf35b9e, type: 3}
+  wallCrash1: {fileID: 8300000, guid: 148c211a33696e346ad436c3b36c819b, type: 3}
 --- !u!1 &1910634307
 GameObject:
   m_ObjectHideFlags: 0

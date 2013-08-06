@@ -11,6 +11,13 @@ public class Graph : MonoBehaviour {
 	Dictionary<int, float> FliesDictionary = new Dictionary<int, float>();
 	Dictionary<int, float> AphidDictionary = new Dictionary<int, float>();
 	Dictionary<int, float> RoachDictionary = new Dictionary<int, float>();
+	Dictionary<int, float> Roach2Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> Roach3Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> Roach4Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> Roach5Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> Roach6Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> Roach7Dictionary = new Dictionary<int, float>();
+	
 	Dictionary<string, Color> colorDictionary = new Dictionary<string, Color>();
 	Color[] colors;
 	Color defaultColor;
@@ -18,6 +25,8 @@ public class Graph : MonoBehaviour {
 	List<String> SelectedAnimalsList = new List<String>();
 	int startMonth, endMonth;
 	Rect GraphWindow = new Rect(20, 20, Screen.width *.9f, Screen.height * .8f);
+	Rect scrollWindow;
+	Vector2 scrollWindowPos;
 	Texture2D graphLines;
 	float maxBiomass = 0.0f;
 	
@@ -28,7 +37,7 @@ public class Graph : MonoBehaviour {
 	Texture2D texture;
 	// Use this for initialization
 	void Start () {
-		colors = new Color[9] {Color.red, Color.blue, Color.magenta, Color.green, Color.cyan, Color.yellow, Color.white, Color.gray, Color.black};
+		colors = new Color[13] {Color.red, Color.blue, Color.magenta, Color.green, Color.cyan, Color.yellow, Color.white, Color.gray, Color.black,Color.red,Color.red,Color.red,Color.red};
 		texture = new Texture2D(1, 1);
 		graphLines = new Texture2D(1,1);
 		graphLines.SetPixel(0,0,Color.white);
@@ -40,7 +49,7 @@ public class Graph : MonoBehaviour {
 		FliesDictionary.Add(1, 2000f);
 		FliesDictionary.Add(2, 1500f);
 		FliesDictionary.Add(3, 1000f);
-		FliesDictionary.Add(4, 1200f);
+		FliesDictionary.Add(4, 1300f);
 		AnimalDictionary.Add("Flies", FliesDictionary);
 		AphidDictionary.Add(1, 2200f);
 		AphidDictionary.Add(2, 1500f);
@@ -50,12 +59,45 @@ public class Graph : MonoBehaviour {
 		RoachDictionary.Add(1, 1400f);
 		RoachDictionary.Add(2, 1500f);
 		RoachDictionary.Add(3, 1000f);
-		RoachDictionary.Add(4, 1200f);
+		RoachDictionary.Add(4, 1400f);
 		AnimalDictionary.Add("Roach", RoachDictionary);
+		Roach2Dictionary.Add(1, 1400f);
+		Roach2Dictionary.Add(2, 1500f);
+		Roach2Dictionary.Add(3, 1000f);
+		Roach2Dictionary.Add(4, 1400f);
+		AnimalDictionary.Add("Roach2", Roach2Dictionary);
+		Roach3Dictionary.Add(1, 1400f);
+		Roach3Dictionary.Add(2, 1500f);
+		Roach3Dictionary.Add(3, 1000f);
+		Roach3Dictionary.Add(4, 1400f);
+		AnimalDictionary.Add("Roach3", Roach3Dictionary);
+		Roach4Dictionary.Add(1, 1400f);
+		Roach4Dictionary.Add(2, 1500f);
+		Roach4Dictionary.Add(3, 1000f);
+		Roach4Dictionary.Add(4, 1400f);
+		AnimalDictionary.Add("Roach4", Roach4Dictionary);
+		Roach5Dictionary.Add(1, 1400f);
+		Roach5Dictionary.Add(2, 1500f);
+		Roach5Dictionary.Add(3, 1000f);
+		Roach5Dictionary.Add(4, 1400f);
+		AnimalDictionary.Add("Roach5", Roach5Dictionary);
+		Roach6Dictionary.Add(1, 1400f);
+		Roach6Dictionary.Add(2, 1500f);
+		Roach6Dictionary.Add(3, 1000f);
+		Roach6Dictionary.Add(4, 1400f);
+		AnimalDictionary.Add("Roach6", Roach6Dictionary);
+		Roach7Dictionary.Add(1, 1400f);
+		Roach7Dictionary.Add(2, 1500f);
+		Roach7Dictionary.Add(3, 1000f);
+		Roach7Dictionary.Add(4, 1400f);
+		AnimalDictionary.Add("Roach7", Roach7Dictionary);
 		
 		barGraphMonthText = "1";
 		lineGraphStartMonthText = "1";
 		lineGraphEndMonthText = "4";
+		
+		scrollWindow = new Rect(GraphWindow.width - 140, 20, 140, GraphWindow.height - 30);
+		scrollWindowPos = new Vector2(0, 0);
 		
 		foreach(KeyValuePair<String, Dictionary<int, float>> entry in AnimalDictionary)
 		{
@@ -76,13 +118,17 @@ public class Graph : MonoBehaviour {
 		int count = 1;
 		defaultColor = GUI.color;
 		colorDictionary = new Dictionary<string, Color>();
+		
+		scrollWindowPos = GUI.BeginScrollView (scrollWindow, scrollWindowPos, new Rect (0, 0, 120, 35 * AnimalList.Count));
+		
+
 		foreach(string animal in AnimalList)
 		{
 			if(count<= colors.Length)
 			{
 				colorDictionary.Add(animal, colors[count-1]);
 				GUI.color = colors[count-1];
-				if(GUI.Button(new Rect(GraphWindow.width - 90, 10 + 30*count,80,30), animal))
+				if(GUI.Button(new Rect(2, 30*count,80,30), animal))
 				{
 					if(SelectedAnimalsList.Contains(animal))
 					{
@@ -95,6 +141,9 @@ public class Graph : MonoBehaviour {
 			count++;
 			GUI.color = defaultColor;
 		}
+		
+		GUI.EndScrollView ();
+		
 		GUIUtility.RotateAroundPivot(-90, new Vector2(55, 115));
 		GUI.Label(new Rect(5,100, 100, 30),"Biomass");
 		GUIUtility.RotateAroundPivot(90, new Vector2(55, 115));
@@ -144,7 +193,6 @@ public class Graph : MonoBehaviour {
 		
 		float pointSpace = (GraphArea.width - 10) / (Int32.Parse(lineGraphEndMonthText) - Int32.Parse(lineGraphStartMonthText));
 		GUI.BeginGroup(GraphArea);
-		GUI.Box(new Rect(0,0,1000,1000),"");
 	
 		
 		Dictionary<int, float> animalBiomasses;
