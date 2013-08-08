@@ -7,9 +7,9 @@ public class SoundController : MonoBehaviour {
 	public AudioClip[] enemyArrowDeathSounds;
 	public AudioClip[] playerWallHitSounds;
 	
-	public AudioClip sword1, sword2, sword3, arrow1, arrow2, wallCrash1;
+	public AudioClip sword1, sword2, sword3, arrow1, arrow2, wallCrash1; //list of sounds
 	
-	public static SoundController instance;
+	public static SoundController instance; // for singleton
 	
 	// Use this for initialization
 	void Start () {
@@ -26,9 +26,10 @@ public class SoundController : MonoBehaviour {
 	
 	void Awake()
 	{
-		instance = this;
+		instance = this;//for singleton
 	}
 	
+	//random getters
 	public AudioClip GetEnemySwordDeathSound()
 	{
 		return enemySwordDeathSounds[Random.Range(0, enemySwordDeathSounds.Length)];

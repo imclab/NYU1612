@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\FishControl.cs" />
+     <Compile Include="Assets\Scripts\InputGraph.cs" />
      <Compile Include="Assets\Scripts\WaterWaves.cs" />
      <Compile Include="Assets\fishanimate.cs" />
   </ItemGroup>

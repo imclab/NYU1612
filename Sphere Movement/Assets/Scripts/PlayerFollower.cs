@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerFollower : MonoBehaviour {
 	
-	public Transform follow;
-	public float speed = 10f;
+	public Transform follow; //thing to follow
+	public float speed = 10f; //follow speed
 	public Transform planet;
 
 	// Use this for initialization
@@ -14,10 +14,8 @@ public class PlayerFollower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.RotateAround(planet.position, transform.right, speed * Time.deltaTime);
-		transform.rotation = Quaternion.Slerp(transform.rotation, follow.rotation, Time.deltaTime * speed);
-		transform.position = Vector3.Lerp(transform.position, follow.position, Time.deltaTime * speed);
-		//Quaternion.Slerp(transform.rotation, follow.rotation, 1);
+		transform.rotation = Quaternion.Slerp(transform.rotation, follow.rotation, Time.deltaTime * speed);//rotate to keep aligned with planet
+		transform.position = Vector3.Lerp(transform.position, follow.position, Time.deltaTime * speed);//move to object
 		
 	}
 }

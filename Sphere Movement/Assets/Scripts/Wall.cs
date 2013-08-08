@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Wall : MonoBehaviour {
+public class Wall : MonoBehaviour {//wall object
 
 	// Use this for initialization
 	void Start () {
@@ -15,14 +15,15 @@ public class Wall : MonoBehaviour {
 
 	void OnTriggerEnter (Collider hit)
 	{
-		if(hit.tag == "Despawner")
+		if(hit.tag == "Despawner")//despawn
 		{
 			KillSelf();
 		}else if(hit.tag == "Player")
 		{
-			AudioSource.PlayClipAtPoint(SoundController.instance.GetPlayerWallHitSound(), transform.position);		}
-		
+			AudioSource.PlayClipAtPoint(SoundController.instance.GetPlayerWallHitSound(), transform.position);//player hit audio		
 		}
+		
+	}
 	
 	void KillSelf()
 	{
