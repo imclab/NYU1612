@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour {
 	public int spawnPerWave = 3;
 	public float spawnSpace = 5f; //space spawner needs to move before spawning
 	Vector3 lastSpawnPos; //last spawn position used for spawning
-		
+	bool wallSpawned = false; //so walls don't spawn twice in a row
 	
 	float s = .5f;
 	
@@ -43,6 +43,14 @@ public class Spawner : MonoBehaviour {
 				GameObject go = Instantiate(spawnArray[p], transform.position, transform.rotation) as GameObject; //spawn thing
 				//adjust height to make sure its on the surface of the planet
 				go.transform.parent = planet; // for rotating and following
+				
+				RaycastHit hit = new RaycastHit();
+				//for aligning mesh to planet FIX THIS OMG
+				if(go.collider.Raycast(new Ray(go.transform.position, -go.transform.up), out hit, 100f))
+				{	
+					
+					go.transform.position = hit.point;
+				}
 				int n = Random.Range(0,startPos.Length);//randomly pick spawn location
 				while(posException.Contains(n))
 				{
@@ -50,19 +58,41 @@ public class Spawner : MonoBehaviour {
 				}
 				posException.Add(n);//add position to exclusion list so we dont spawn multiple things on the same spot
 				
-				if(spawnArray[p].Equals(wall))//if wall is spawned we exclude more points
+				if(spawnArray[p].tag == "Wall" && !wallSpawned)//if wall is spawned we exclude more points
 				{
-					posException.Add(n+1);//exclude the sides of the wall and the wall covered portion from spawning stuff
-					posException.Add(n-1);
+					GameObject temp = SpawnObject(spawnArray[p]);//spawn other wall
+					temp.transform.RotateAround (Vector3.zero, transform.forward, startPos[n] + s*3);//rotate to spawn location
+					posException.Add(n+3);//exclude the sides of the wall and the wall covered portion from spawning stuff
+					temp = SpawnObject(spawnArray[p]);//spawn other wall
+					temp.transform.RotateAround (Vector3.zero, transform.forward, startPos[n] + s*2);//rotate to spawn location
 					posException.Add(n+2);
-					posException.Add(n-2);
-					posException.Add(n+3);
-					posException.Add(n-3);
+					temp = SpawnObject(spawnArray[p]);//spawn other wall
+					temp.transform.RotateAround (Vector3.zero, transform.forward, startPos[n] + s*-1);//rotate to spawn location
+					posException.Add(n-1);
+					wallSpawned = true;
+
+				}else{
+					wallSpawned = false;
 				}
+				
 				go.transform.RotateAround (Vector3.zero, transform.forward, startPos[n]);//rotate to spawn location
 		
 			}
 		}	
 
+	}
+	
+	GameObject SpawnObject(GameObject ob)
+	{
+		GameObject go = Instantiate(ob, transform.position, transform.rotation) as GameObject; //spawn thing
+		go.transform.parent = planet; // for rotating and following
+		//RaycastHit hit = new RaycastHit();
+		//for aligning mesh to planet FIX THIS OMG
+//		if(go.collider.Raycast(new Ray(go.transform.position, -go.transform.up), out hit, 100f))
+//		{	
+//			go.transform.position = hit.point;
+//		}
+
+		return go;
 	}
 }

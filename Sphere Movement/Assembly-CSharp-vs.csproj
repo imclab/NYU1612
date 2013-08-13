@@ -44,15 +44,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\JuggernautMove.cs" />
-     <Compile Include="Assets\Scripts\Planet.cs" />
-     <Compile Include="Assets\Scripts\PlayerFollower.cs" />
-     <Compile Include="Assets\Scripts\PlayerMove.cs" />
-     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-     <Compile Include="Assets\Scripts\SoundController.cs" />
-     <Compile Include="Assets\Scripts\Spawner.cs" />
-     <Compile Include="Assets\Scripts\Wall.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Enemy\JuggernautMove.cs" />
+     <Compile Include="Assets\Scripts\Enemy\Wall.cs" />
+     <Compile Include="Assets\Scripts\Player\HealthController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerFollower.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
+     <Compile Include="Assets\Scripts\Player\ScoreKeeper.cs" />
+     <Compile Include="Assets\Scripts\Player\Spawner.cs" />
+     <Compile Include="Assets\Scripts\PowerUps\HealthPU.cs" />
+     <Compile Include="Assets\Scripts\World\Planet.cs" />
+     <Compile Include="Assets\Scripts\World\SoundController.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

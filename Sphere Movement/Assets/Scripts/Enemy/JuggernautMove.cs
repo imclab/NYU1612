@@ -19,9 +19,10 @@ public class JuggernautMove : MonoBehaviour {
 	{
 		if(hit.tag == "Despawner")//despawn
 		{
-			KillSelf();
+			Destroy(gameObject);
 		}else if(hit.tag == "Player")//attack by player
 		{
+			HealthController.instance.ChangeHP(-40);
 			AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemySwordDeathSound(), transform.position);//death audio
 			KillSelf();
 		}
@@ -31,7 +32,7 @@ public class JuggernautMove : MonoBehaviour {
 	void KillSelf()
 	{
 		Destroy(gameObject, .3f);//delay to play particles
-		
+		ScoreKeeper.instance.ChangeScore(10);
 		//death animation
 		MeshRenderer mr = transform.gameObject.GetComponent<MeshRenderer>();
 		mr.enabled = false;

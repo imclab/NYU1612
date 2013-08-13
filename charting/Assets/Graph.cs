@@ -6,31 +6,31 @@ using System.Text.RegularExpressions;
 
 public class Graph : MonoBehaviour {
 	
-	Dictionary<String, Dictionary<int, float>> AnimalDictionary = new Dictionary<String, Dictionary<int, float>>();
-	Dictionary<int, float> AntsDictionary = new Dictionary<int, float>();
-	Dictionary<int, float> FliesDictionary = new Dictionary<int, float>();
-	Dictionary<int, float> AphidDictionary = new Dictionary<int, float>();
-	Dictionary<int, float> RoachDictionary = new Dictionary<int, float>();
-	Dictionary<int, float> Roach2Dictionary = new Dictionary<int, float>();
-	Dictionary<int, float> Roach3Dictionary = new Dictionary<int, float>();
-	Dictionary<int, float> Roach4Dictionary = new Dictionary<int, float>();
-	Dictionary<int, float> Roach5Dictionary = new Dictionary<int, float>();
-	Dictionary<int, float> Roach6Dictionary = new Dictionary<int, float>();
-	Dictionary<int, float> Roach7Dictionary = new Dictionary<int, float>();
+	Dictionary<String, Dictionary<int, float>> animalDictionary = new Dictionary<String, Dictionary<int, float>>();
+	Dictionary<int, float> antsDictionary = new Dictionary<int, float>();
+	Dictionary<int, float> fliesDictionary = new Dictionary<int, float>();
+	Dictionary<int, float> aphidDictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roachDictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roach2Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roach3Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roach4Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roach5Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roach6Dictionary = new Dictionary<int, float>();
+	Dictionary<int, float> roach7Dictionary = new Dictionary<int, float>();
 	
-	Dictionary<string, Color> colorDictionary = new Dictionary<string, Color>();
-	Color[] colors;
+	Dictionary<string, Color> colorDictionary = new Dictionary<string, Color>();//animal to color relation
+	Color[] colors; //available colors
 	Color defaultColor;
-	List<String> AnimalList = new List<String>();
-	List<String> SelectedAnimalsList = new List<String>();
+	List<String> animalList = new List<String>();//list of all animals
+	List<String> selectedAnimalsList = new List<String>();//selected animals for displaying
 	int startMonth, endMonth;
-	Rect GraphWindow = new Rect(20, 20, Screen.width *.9f, Screen.height * .8f);
+	Rect GraphWindow = new Rect(20, 20, Screen.width *.9f, Screen.height * .8f);//main window
 	Rect scrollWindow;
 	Vector2 scrollWindowPos;
 	Texture2D graphLines;
 	float maxBiomass = 0.0f;
 	
-	string barGraphMonthText, lineGraphStartMonthText, lineGraphEndMonthText;
+	string barGraphMonthText, lineGraphStartMonthText, lineGraphEndMonthText, scrollBarSearchText;
 
 	
 	GUIStyle style = new GUIStyle();
@@ -41,68 +41,70 @@ public class Graph : MonoBehaviour {
 		texture = new Texture2D(1, 1);
 		graphLines = new Texture2D(1,1);
 		graphLines.SetPixel(0,0,Color.white);
-		AntsDictionary.Add(1, 1000f);
-		AntsDictionary.Add(2, 2000f);
-		AntsDictionary.Add(3, 1500f);
-		AntsDictionary.Add(4, 2200f);
-		AnimalDictionary.Add("Ants", AntsDictionary);
-		FliesDictionary.Add(1, 2000f);
-		FliesDictionary.Add(2, 1500f);
-		FliesDictionary.Add(3, 1000f);
-		FliesDictionary.Add(4, 1300f);
-		AnimalDictionary.Add("Flies", FliesDictionary);
-		AphidDictionary.Add(1, 2200f);
-		AphidDictionary.Add(2, 1500f);
-		AphidDictionary.Add(3, 1000f);
-		AphidDictionary.Add(4, 1200f);
-		AnimalDictionary.Add("Aphid", AphidDictionary);
-		RoachDictionary.Add(1, 1400f);
-		RoachDictionary.Add(2, 1500f);
-		RoachDictionary.Add(3, 1000f);
-		RoachDictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach", RoachDictionary);
-		Roach2Dictionary.Add(1, 1400f);
-		Roach2Dictionary.Add(2, 1500f);
-		Roach2Dictionary.Add(3, 1000f);
-		Roach2Dictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach2", Roach2Dictionary);
-		Roach3Dictionary.Add(1, 1400f);
-		Roach3Dictionary.Add(2, 1500f);
-		Roach3Dictionary.Add(3, 1000f);
-		Roach3Dictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach3", Roach3Dictionary);
-		Roach4Dictionary.Add(1, 1400f);
-		Roach4Dictionary.Add(2, 1500f);
-		Roach4Dictionary.Add(3, 1000f);
-		Roach4Dictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach4", Roach4Dictionary);
-		Roach5Dictionary.Add(1, 1400f);
-		Roach5Dictionary.Add(2, 1500f);
-		Roach5Dictionary.Add(3, 1000f);
-		Roach5Dictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach5", Roach5Dictionary);
-		Roach6Dictionary.Add(1, 1400f);
-		Roach6Dictionary.Add(2, 1500f);
-		Roach6Dictionary.Add(3, 1000f);
-		Roach6Dictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach6", Roach6Dictionary);
-		Roach7Dictionary.Add(1, 1400f);
-		Roach7Dictionary.Add(2, 1500f);
-		Roach7Dictionary.Add(3, 1000f);
-		Roach7Dictionary.Add(4, 1400f);
-		AnimalDictionary.Add("Roach7", Roach7Dictionary);
+		antsDictionary.Add(1, 1000f);
+		antsDictionary.Add(2, 2000f);
+		antsDictionary.Add(3, 1500f);
+		antsDictionary.Add(4, 2200f);
+		animalDictionary.Add("Ants", antsDictionary);
+		fliesDictionary.Add(1, 2000f);
+		fliesDictionary.Add(2, 1500f);
+		fliesDictionary.Add(3, 1000f);
+		fliesDictionary.Add(4, 1300f);
+		animalDictionary.Add("Flies", fliesDictionary);
+		aphidDictionary.Add(1, 2200f);
+		aphidDictionary.Add(2, 1500f);
+		aphidDictionary.Add(3, 1000f);
+		aphidDictionary.Add(4, 1200f);
+		animalDictionary.Add("Aphid", aphidDictionary);
+		roachDictionary.Add(1, 1400f);
+		roachDictionary.Add(2, 1500f);
+		roachDictionary.Add(3, 1000f);
+		roachDictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach", roachDictionary);
+		roach2Dictionary.Add(1, 1400f);
+		roach2Dictionary.Add(2, 1500f);
+		roach2Dictionary.Add(3, 1000f);
+		roach2Dictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach2", roach2Dictionary);
+		roach3Dictionary.Add(1, 1400f);
+		roach3Dictionary.Add(2, 1500f);
+		roach3Dictionary.Add(3, 1000f);
+		roach3Dictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach3", roach3Dictionary);
+		roach4Dictionary.Add(1, 1400f);
+		roach4Dictionary.Add(2, 1500f);
+		roach4Dictionary.Add(3, 1000f);
+		roach4Dictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach4", roach4Dictionary);
+		roach5Dictionary.Add(1, 1400f);
+		roach5Dictionary.Add(2, 1500f);
+		roach5Dictionary.Add(3, 1000f);
+		roach5Dictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach5", roach5Dictionary);
+		roach6Dictionary.Add(1, 1400f);
+		roach6Dictionary.Add(2, 1500f);
+		roach6Dictionary.Add(3, 1000f);
+		roach6Dictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach6", roach6Dictionary);
+		roach7Dictionary.Add(1, 1400f);
+		roach7Dictionary.Add(2, 1500f);
+		roach7Dictionary.Add(3, 1000f);
+		roach7Dictionary.Add(4, 1400f);
+		animalDictionary.Add("Roach7", roach7Dictionary);
 		
 		barGraphMonthText = "1";
 		lineGraphStartMonthText = "1";
 		lineGraphEndMonthText = "4";
+		scrollBarSearchText = "";
 		
-		scrollWindow = new Rect(GraphWindow.width - 140, 20, 140, GraphWindow.height - 30);
+		
+		scrollWindow = new Rect(GraphWindow.width - 140, 50, 130, GraphWindow.height - 50);
 		scrollWindowPos = new Vector2(0, 0);
 		
-		foreach(KeyValuePair<String, Dictionary<int, float>> entry in AnimalDictionary)
+		foreach(KeyValuePair<String, Dictionary<int, float>> entry in animalDictionary)
 		{
-			AnimalList.Add(entry.Key);
-			SelectedAnimalsList.Add(entry.Key);
+			animalList.Add(entry.Key);
+			selectedAnimalsList.Add(entry.Key);
 			//foreach(KeyValuePair<int, float>> entry
 		}
 				
@@ -114,30 +116,40 @@ public class Graph : MonoBehaviour {
         GraphWindow = GUI.Window(0, GraphWindow, DoWindow, "Graph");
     }
     void DoWindow(int windowID) {
-		GUI.DragWindow(new Rect(0, 0, 10000, 20));
-		int count = 1;
+		GUI.DragWindow(new Rect(0, 0, 10000, 20));//make window draggable
+		int count = 0;
+		int displayCount = 0;
 		defaultColor = GUI.color;
 		colorDictionary = new Dictionary<string, Color>();
 		
-		scrollWindowPos = GUI.BeginScrollView (scrollWindow, scrollWindowPos, new Rect (0, 0, 120, 35 * AnimalList.Count));
+		GUI.Label(new Rect(GraphWindow.width - 180,20, 50, 25), "Search");
+		scrollBarSearchText = GUI.TextField(new Rect(GraphWindow.width - 130,20, 60, 25), scrollBarSearchText);//search field
 		
-
-		foreach(string animal in AnimalList)
+		scrollWindowPos = GUI.BeginScrollView (scrollWindow, scrollWindowPos, new Rect (0, 0, 110, 35 * animalList.Count));//scroll window 
+		
+		//buttons in scrollbar
+		foreach(string animal in animalList)
 		{
-			if(count<= colors.Length)
-			{
-				colorDictionary.Add(animal, colors[count-1]);
-				GUI.color = colors[count-1];
-				if(GUI.Button(new Rect(2, 30*count,80,30), animal))
+			
+				if(count< colors.Length)
 				{
-					if(SelectedAnimalsList.Contains(animal))
+					colorDictionary.Add(animal, colors[count]);
+					GUI.color = colors[count];
+					if(animal.ToLower().Contains(scrollBarSearchText.ToLower()))
 					{
-						SelectedAnimalsList.Remove(animal);
-					}else{
-						SelectedAnimalsList.Add(animal);
+						if(GUI.Button(new Rect(2, 30*(displayCount),80,30), animal))//button per animal shown in list
+						{
+							if(selectedAnimalsList.Contains(animal))
+							{
+								selectedAnimalsList.Remove(animal);
+							}else{
+								selectedAnimalsList.Add(animal);
+							}
+						}
+					displayCount++;
 					}
 				}
-			}
+			
 			count++;
 			GUI.color = defaultColor;
 		}
@@ -152,13 +164,14 @@ public class Graph : MonoBehaviour {
 		//DrawBarGraph();
 		DrawLineGraph();
     }
+	//graph lines
 	void DrawGraphSkeleton()
 	{
-		
-		foreach(string animal in SelectedAnimalsList)
+		//finding graph bounds
+		foreach(string animal in selectedAnimalsList)
 		{
 			Dictionary<int, float> animalBiomasses;
-			AnimalDictionary.TryGetValue(animal, out animalBiomasses);
+			animalDictionary.TryGetValue(animal, out animalBiomasses);
 			foreach(KeyValuePair<int, float> entry in animalBiomasses)
 			{
 				if(entry.Value > maxBiomass)
@@ -169,6 +182,7 @@ public class Graph : MonoBehaviour {
 		}
 		float maxGraphEntry = maxBiomass;
 		int graphDraw = 10;
+		//graph lines
 		for(float i = 0f; i <= 1.2; i = i + .1f)
 		{
 			//GUI.Label(new Rect(100, 30 * graphDraw + 60, 100, 30), "" + maxGraphEntry * i);
@@ -182,6 +196,7 @@ public class Graph : MonoBehaviour {
 	
 	void DrawLineGraph()
 	{
+		//month selection
 		GUI.Label(new Rect(5,15, 80, 25), "Start Month");
 		GUI.Label(new Rect(5,GraphWindow.height - 60, 80, 25), "End Month");
 		lineGraphStartMonthText = GUI.TextField(new Rect(5,40, 40, 25), lineGraphStartMonthText);
@@ -189,20 +204,20 @@ public class Graph : MonoBehaviour {
 		lineGraphEndMonthText = GUI.TextField(new Rect(5,GraphWindow.height - 30, 40, 25), lineGraphEndMonthText);
 		lineGraphEndMonthText = Regex.Replace(lineGraphEndMonthText, @"[^0-9 ]", "");
 		
-		Rect GraphArea = new Rect(155, (GraphWindow.height / 16) * -1 + 80, GraphWindow.width - 300, (GraphWindow.height / 16)* 11 + 2);
+		Rect graphArea = new Rect(155, (GraphWindow.height / 16) * -1 + 80, GraphWindow.width - 300, (GraphWindow.height / 16)* 11 + 2);
 		
-		float pointSpace = (GraphArea.width - 10) / (Int32.Parse(lineGraphEndMonthText) - Int32.Parse(lineGraphStartMonthText));
-		GUI.BeginGroup(GraphArea);
+		float pointSpace = (graphArea.width - 10) / (Int32.Parse(lineGraphEndMonthText) - Int32.Parse(lineGraphStartMonthText));
+		GUI.BeginGroup(graphArea);
 	
 		
 		Dictionary<int, float> animalBiomasses;
 		float tempBiomass = 0f;
 		
-		foreach(string animal in SelectedAnimalsList)
+		foreach(string animal in selectedAnimalsList)
 		{
 			int count = 1;
 			int month = Int32.Parse(lineGraphStartMonthText);
-			AnimalDictionary.TryGetValue(animal, out animalBiomasses);
+			animalDictionary.TryGetValue(animal, out animalBiomasses);
 			while( month <= Int32.Parse(lineGraphEndMonthText))
 			{
 				if(animalBiomasses.TryGetValue(month, out tempBiomass))
@@ -211,14 +226,14 @@ public class Graph : MonoBehaviour {
 					texture.SetPixel(0,0,colorDictionary[animal]);
 					texture.Apply();
 					style.normal.background = texture;
-					
-					GUI.Box(new Rect((pointSpace * (month - Int32.Parse(lineGraphStartMonthText))), (GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass) - 1 ), 2, 2),texture);
+					Drawing.DrawLine(new Vector2((int)(pointSpace * (month - Int32.Parse(lineGraphStartMonthText))+1), (int)(graphArea.height - ((graphArea.height - graphArea.height/11)  * tempBiomass))-1), new Vector2((int)(pointSpace * (month - Int32.Parse(lineGraphStartMonthText))+1), (int)(graphArea.height - ((graphArea.height - graphArea.height/11)  * tempBiomass))+5), colorDictionary[animal], 5);
+					//GUI.Box(new Rect((pointSpace * (month - Int32.Parse(lineGraphStartMonthText))), (GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass) - 1 ), 2, 2),texture);
 					float tempBiomass2;
 					if(animalBiomasses.TryGetValue(month + 1, out tempBiomass2))
 					{
 						tempBiomass2 = tempBiomass2 / maxBiomass;
 						//Drawing.DrawLine(new Vector2((int)(pointSpace * month), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass))), new Vector2((int)(pointSpace * (month + 1)), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass2))));
-						Drawing.DrawLine(new Vector2((int)(pointSpace * (month - Int32.Parse(lineGraphStartMonthText))), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass))), new Vector2((int)(pointSpace * (count)), (int)(GraphArea.height - ((GraphArea.height - GraphArea.height/11)  * tempBiomass2))), colorDictionary[animal]);
+						Drawing.DrawLine(new Vector2((int)(pointSpace * (month - Int32.Parse(lineGraphStartMonthText))), (int)(graphArea.height - ((graphArea.height - graphArea.height/11)  * tempBiomass))), new Vector2((int)(pointSpace * (count)), (int)(graphArea.height - ((graphArea.height - graphArea.height/11)  * tempBiomass2))), colorDictionary[animal],3);
 					}
 				}
 				month++;
@@ -231,29 +246,29 @@ public class Graph : MonoBehaviour {
 	}
 	void DrawBarGraph()
 	{
-		
+		//month selection
 		GUI.Label(new Rect(5,15, 40, 25), "Month");
 		barGraphMonthText = GUI.TextField(new Rect(5,40, 40, 25), barGraphMonthText);
 		barGraphMonthText = Regex.Replace(barGraphMonthText, @"[^0-9 ]", "");
 		
-		Rect GraphArea = new Rect(155, (GraphWindow.height / 16) * -1 + 80, GraphWindow.width - 300, (GraphWindow.height / 16)* 11 + 2);
-		float RectWidth = (GraphArea.width - 10) / SelectedAnimalsList.Count;
-		GUI.BeginGroup(GraphArea);
+		Rect graphArea = new Rect(155, (GraphWindow.height / 16) * -1 + 80, GraphWindow.width - 300, (GraphWindow.height / 16)* 11 + 2);
+		float RectWidth = (graphArea.width - 10) / selectedAnimalsList.Count;
+		GUI.BeginGroup(graphArea);
 		
 		int count = 0;
 		Dictionary<int, float> animalBiomasses;
 		float tempBiomass = 0f;
-		foreach(string animal in SelectedAnimalsList)
+		foreach(string animal in selectedAnimalsList)
 		{
 			if(count < colors.Length)
 			{
-				AnimalDictionary.TryGetValue(animal, out animalBiomasses);
+				animalDictionary.TryGetValue(animal, out animalBiomasses);
 				animalBiomasses.TryGetValue(Int32.Parse(barGraphMonthText), out tempBiomass);//change to specify month
 				tempBiomass = tempBiomass / maxBiomass;
 				texture.SetPixel(0,0,colorDictionary[animal]);
 				texture.Apply();
 				style.normal.background = texture;
-				GUI.Box(new Rect(5+ RectWidth * count,GraphArea.height - (GraphArea.height * tempBiomass) + (GraphWindow.height / 16), RectWidth - 5, (GraphArea.height * tempBiomass)), "", style);
+				GUI.Box(new Rect(5+ RectWidth * count,graphArea.height - (graphArea.height * tempBiomass) + (GraphWindow.height / 16), RectWidth - 5, (graphArea.height * tempBiomass)), "", style);
 			}
 			count++;
 			GUI.color = defaultColor;
@@ -261,9 +276,9 @@ public class Graph : MonoBehaviour {
 		}
 		GUI.EndGroup();
 		count = 0;
-		foreach(string animal in SelectedAnimalsList)
+		foreach(string animal in selectedAnimalsList)
 		{					
-			AnimalDictionary.TryGetValue(animal, out animalBiomasses);
+			animalDictionary.TryGetValue(animal, out animalBiomasses);
 			GUIUtility.RotateAroundPivot(-45, new Vector2(160 + RectWidth * count, GraphWindow.height - 40));
 			GUI.Label(new Rect(160 + RectWidth * count, GraphWindow.height - 40,100,30), animal);
 			GUIUtility.RotateAroundPivot(45, new Vector2(160 + RectWidth * count, GraphWindow.height - 40));

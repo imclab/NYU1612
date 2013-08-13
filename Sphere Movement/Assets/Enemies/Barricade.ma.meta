@@ -1,42 +1,44 @@
 fileFormatVersion: 2
-guid: c8db0a4ef762d57418280e67ef9d4e2e
+guid: 55d9a59d249991e4cb14c245ec99a5a9
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pSphere1
-    100004: pSphere2
-    100006: pSphere3
-    100008: pSphere5
-    100010: pSphere6
+    100002: polySurface1
+    100004: polySurface2
+    100006: polySurface3
+    100008: polySurface4
+    100010: polySurface5
     400000: //RootNode
-    400002: pSphere1
-    400004: pSphere2
-    400006: pSphere3
-    400008: pSphere5
-    400010: pSphere6
-    2300000: pSphere1
-    2300002: pSphere2
-    2300004: pSphere3
-    2300006: pSphere5
-    2300008: pSphere6
+    400002: polySurface1
+    400004: polySurface2
+    400006: polySurface3
+    400008: polySurface4
+    400010: polySurface5
+    2300000: polySurface1
+    2300002: polySurface2
+    2300004: polySurface3
+    2300006: polySurface4
+    2300008: polySurface5
     2300010: //RootNode
-    3300000: pSphere1
-    3300002: pSphere2
-    3300004: pSphere3
-    3300006: pSphere5
-    3300008: pSphere6
+    3300000: polySurface1
+    3300002: polySurface2
+    3300004: polySurface3
+    3300006: polySurface4
+    3300008: polySurface5
     3300010: //RootNode
-    4300000: pSphere1
-    4300002: pSphere2
-    4300004: pSphere3
-    4300006: pSphere5
-    4300008: pSphere6
-    4300010: Juggernaut
+    4300000: polySurface1
+    4300002: polySurface2
+    4300004: polySurface3
+    4300006: polySurface4
+    4300008: polySurface5
+    4300010: polySurface6
+    4300012: polySurface30
+    4300014: Barricade
     9500000: //RootNode
   materials:
-    importMaterials: 1
-    materialName: 0
+    importMaterials: 0
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
