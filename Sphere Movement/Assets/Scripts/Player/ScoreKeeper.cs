@@ -6,6 +6,7 @@ public class ScoreKeeper : MonoBehaviour {
 	public static ScoreKeeper instance; // for singleton
 
 	int score = 0;
+	static int highScore = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,21 @@ public class ScoreKeeper : MonoBehaviour {
 		{
 			score = 0;
 		}
+		if(score > highScore)
+		{
+			highScore = score;
+		}
 		guiText.text = "Gold: " + score;
 		return score;
+	}
+	
+	public int GetScore()
+	{
+		return score;
+	}
+	
+	public int GetHighScore()
+	{
+		return highScore;
 	}
 }

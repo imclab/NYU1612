@@ -4,7 +4,6 @@ using System.Collections;
 public class HealthController : MonoBehaviour {
 	
 	public static HealthController instance; // for singleton
-
 	public int maxHP, currHP;
 	
 	// Use this for initialization
@@ -26,10 +25,21 @@ public class HealthController : MonoBehaviour {
 	
 	public int ChangeHP(int mod)
 	{
+		if(mod <= -50)
+		{
+			CameraShake.instance.ScreenShake(1f);
+		}else if(mod <= -30)
+		{
+			CameraShake.instance.ScreenShake(.8f);
+		}else if (mod < 0)
+		{
+			CameraShake.instance.ScreenShake(.4f);
+		}
+		
 		currHP += mod;
 		if (currHP <= 0)
 		{
-			Application.LoadLevel ("spheremove");
+			Application.LoadLevel ("EndScreen");
 			//die
 		}
 		if (currHP >= maxHP)
@@ -37,6 +47,15 @@ public class HealthController : MonoBehaviour {
 			currHP = maxHP;
 		}
 		guiText.text = "HP: " + currHP;
+		
+		if(currHP <= 50)
+		{
+			BloodSplatterController.instance.StartBlood();
+		}else{
+			BloodSplatterController.instance.StopBlood();
+		}
+		
+		
 		return currHP;
 	}
 }

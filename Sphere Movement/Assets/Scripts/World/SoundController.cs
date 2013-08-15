@@ -6,8 +6,9 @@ public class SoundController : MonoBehaviour {
 	public AudioClip[] enemySwordDeathSounds;
 	public AudioClip[] enemyArrowDeathSounds;
 	public AudioClip[] playerWallHitSounds;
+	public AudioClip[] playerPUCollectSounds;
 	
-	public AudioClip sword1, sword2, sword3, arrow1, arrow2, wallCrash1; //list of sounds
+	public AudioClip sword1, sword2, sword3, arrow1, arrow2, wallCrash1, pu1, pu2; //list of sounds
 	
 	public static SoundController instance; // for singleton
 	
@@ -17,6 +18,7 @@ public class SoundController : MonoBehaviour {
 		enemySwordDeathSounds = new AudioClip[] {sword1, sword2, sword3};
 		enemyArrowDeathSounds = new AudioClip[] {arrow1, arrow2};
 		playerWallHitSounds = new AudioClip[] {wallCrash1};
+		playerPUCollectSounds = new AudioClip[] {pu1, pu2};
 	}
 	
 	// Update is called once per frame
@@ -41,5 +43,9 @@ public class SoundController : MonoBehaviour {
 	public AudioClip GetPlayerWallHitSound()
 	{
 		return playerWallHitSounds[Random.Range(0, playerWallHitSounds.Length)];
+	}
+	public AudioClip GetPlayerPUCollectSound()
+	{
+		return playerPUCollectSounds[Random.Range(0, playerPUCollectSounds.Length)];
 	}
 }

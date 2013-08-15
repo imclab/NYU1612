@@ -27,7 +27,8 @@ public class Enemy : MonoBehaviour {//normal enemy
 			Destroy(gameObject);
 		}else if(hit.tag == "Player")//attack by player
 		{
-			AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemySwordDeathSound(), transform.position);//death audio
+			ScoreKeeper.instance.ChangeScore(1);
+			AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemySwordDeathSound(), transform.position, 1f);//death audio
 			HealthController.instance.ChangeHP(-10);
 			KillSelf();
 		}else if(hit.tag == "Enemy")//stomped by Juggs
@@ -39,20 +40,16 @@ public class Enemy : MonoBehaviour {//normal enemy
 	}
 	//ranged attack
   	void OnMouseDown() {
-		AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemyArrowDeathSound(), transform.position);
+		AudioSource.PlayClipAtPoint(SoundController.instance.GetEnemyArrowDeathSound(), transform.position, .1f);
+		ScoreKeeper.instance.ChangeScore(1);
         KillSelf();
     }
 	
 	void KillSelf()
 	{
-		Destroy(gameObject, .3f);//delay to play particles
-		ScoreKeeper.instance.ChangeScore(1);
-		//death animation
-		MeshRenderer mr = transform.gameObject.GetComponent<MeshRenderer>();
-		mr.enabled = false;
-		Collider cr = transform.gameObject.GetComponent<Collider>();
-		cr.enabled = false;
-		bloodParticle.Play();
+		
+		Instantiate(bloodParticle, transform.position, transform.rotation);
+		Destroy(gameObject);
 	}
  
 }

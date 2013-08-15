@@ -9,12 +9,34 @@ ModelImporter:
     100006: pSphere3
     100008: pSphere5
     100010: pSphere6
+    100012: joint1
+    100014: joint10
+    100016: joint2
+    100018: joint3
+    100020: joint4
+    100022: joint5
+    100024: joint6
+    100026: joint7
+    100028: joint8
+    100030: joint9
+    100032: Juggernaut
     400000: //RootNode
     400002: pSphere1
     400004: pSphere2
     400006: pSphere3
     400008: pSphere5
     400010: pSphere6
+    400012: joint1
+    400014: joint10
+    400016: joint2
+    400018: joint3
+    400020: joint4
+    400022: joint5
+    400024: joint6
+    400026: joint7
+    400028: joint8
+    400030: joint9
+    400032: Juggernaut
     2300000: pSphere1
     2300002: pSphere2
     2300004: pSphere3
@@ -33,7 +55,10 @@ ModelImporter:
     4300006: pSphere5
     4300008: pSphere6
     4300010: Juggernaut
+    7400000: Run
     9500000: //RootNode
+    11100000: //RootNode
+    13700000: Juggernaut
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,7 +71,28 @@ ModelImporter:
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations: []
+    clipAnimations:
+    - name: Run
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -84,5 +130,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 1
   userData: 

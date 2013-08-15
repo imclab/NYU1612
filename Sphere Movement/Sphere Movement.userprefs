@@ -1,12 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PowerUps\HealthPU.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\HealthController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Enemy\JuggernautMove.cs" Line="28" Column="4" />
-      <File FileName="Assets\Scripts\Enemy\Wall.cs" Line="36" Column="40" />
-      <File FileName="Assets\Scripts\Enemy\Enemy.cs" Line="8" Column="38" />
-      <File FileName="Assets\Scripts\Player\Spawner.cs" Line="75" Column="26" />
-      <File FileName="Assets\Scripts\PowerUps\HealthPU.cs" Line="13" Column="76" />
+      <File FileName="Assets\Scripts\Player\Spawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\World\HighScoreText.cs" Line="19" Column="38" />
+      <File FileName="Assets\Scripts\Enemy\Wall.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\ScoreKeeper.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\HealthController.cs" Line="7" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerFollower.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMove.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\CameraShake.cs" Line="42" Column="10" />
+      <File FileName="Assets\Scripts\Player\BloodSplatterController.cs" Line="29" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

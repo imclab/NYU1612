@@ -1,6 +1,6 @@
 //Maya ASCII 2012 scene
 //Name: PlanetSphere.ma
-//Last modified: Tue, Jul 30, 2013 04:12:14 PM
+//Last modified: Wed, Aug 14, 2013 12:52:24 PM
 //Codeset: 1252
 requires maya "2012";
 currentUnit -l centimeter -a degree -t film;
@@ -12,12 +12,12 @@ fileInfo "osv" "Microsoft Home Premium Edition, 64-bit  (Build 9200)\n";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 41.848695250466506 13.655909806707404 8.4381771245491208 ;
-	setAttr ".r" -type "double3" -17.738352729512151 78.599999999997848 0 ;
+	setAttr ".t" -type "double3" 21.470788354842163 3.4584605085901887 6.7285372124067502 ;
+	setAttr ".r" -type "double3" -8.7383527295084811 72.59999999999674 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 44.821869662033833;
+	setAttr ".coi" 22.764641764950149;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -63,10 +63,10 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".man" -type "string" "side_mask";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
-createNode transform -n "pSphere1";
+createNode transform -n "Planet";
 	setAttr ".rp" -type "double3" 0.13291433131319508 0 0.063793112837970511 ;
 	setAttr ".sp" -type "double3" 0.13291433131319508 0 0.063793112837970511 ;
-createNode mesh -n "pSphereShape1" -p "pSphere1";
+createNode mesh -n "PlanetShape" -p "Planet";
 	addAttr -ci true -sn "mso" -ln "miShadingSamplesOverride" -min 0 -max 1 -at "bool";
 	addAttr -ci true -sn "msh" -ln "miShadingSamples" -min 0 -smx 8 -at "float";
 	addAttr -ci true -sn "mdo" -ln "miMaxDisplaceOverride" -min 0 -max 1 -at "bool";
@@ -714,8 +714,13 @@ createNode mesh -n "pSphereShape1" -p "pSphere1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr ".kmb" 0;
+	setAttr ".dsc" yes;
+	setAttr ".uspr" no;
+	setAttr ".rsl" 4;
 	setAttr ".uns" no;
-	setAttr ".mxs" 50;
+	setAttr ".mxs" 10000;
+	setAttr ".tsl" 1000000;
 	setAttr -s 2452 ".pt";
 	setAttr ".pt[0:165]" -type "float3"  0.13291433 0 0.063793115 0.13291433 
 		0 0.063793115 0.13291433 0 0.063793115 0.13291433 0 0.063793115 0.13291433 0 0.063793115 
@@ -7913,6 +7918,8 @@ createNode mesh -n "pSphereShape1" -p "pSphere1";
 	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+	setAttr ".dsm" 2;
+	setAttr ".ssm" 2;
 createNode lightLinker -s -n "lightLinker1";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
@@ -8009,6 +8016,6 @@ relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defau
 relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
-connectAttr "pSphereShape1.iog" ":initialShadingGroup.dsm" -na;
+connectAttr "PlanetShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 // End of PlanetSphere.ma

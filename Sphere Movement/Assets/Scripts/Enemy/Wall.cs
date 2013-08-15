@@ -22,6 +22,7 @@ public class Wall : MonoBehaviour {//wall object
 		{
 			HealthController.instance.ChangeHP(-50);
 			AudioSource.PlayClipAtPoint(SoundController.instance.GetPlayerWallHitSound(), transform.position);//player hit audio		
+			KillSelf();
 		}else if(hit.tag == "Enemy")//stomped by Juggs
 		{
 			AudioSource.PlayClipAtPoint(SoundController.instance.GetPlayerWallHitSound(), transform.position);	
@@ -32,8 +33,7 @@ public class Wall : MonoBehaviour {//wall object
 	
 	void KillSelf()
 	{
-		woodParticle.Play();
-		woodParticle.transform.parent = null;
+		Instantiate(woodParticle, transform.position, transform.rotation);
 		Destroy(gameObject);
 		
 	}

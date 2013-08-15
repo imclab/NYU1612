@@ -17,14 +17,17 @@ public class Spawner : MonoBehaviour {
 	float[] startPos;
 	
 	GameObject[] spawnArray;
-	public GameObject badguy, wall, juggernaut;
+	public GameObject badguy, wall, juggernaut, healthPU, goldPU;
 	
 	
 	// Use this for initialization
 	void Start () {
 		startPos = new float[] {0f, s, s*2, s*3, s*4, s*5, s*6, s*7, s*8, s*9, s*10, s*11, s*12, s*13, s*14, s*15, s*16, s*17, s*18, s*19,
 								-s, -s*2, -s*3, -s*4, -s*5, -s*6, -s*7, -s*8, -s*9, -s*10, -s*11, -s*12, -s*13, -s*14, -s*15, -s*16, -s*17, -s*18, -s*19};
-		spawnArray = new GameObject[] {badguy, badguy, juggernaut, wall};//things to spawn (keep track of ratios)
+		spawnArray = new GameObject[] {badguy, badguy, badguy, badguy, badguy, badguy, badguy,
+										juggernaut, juggernaut, juggernaut,
+										wall, wall, wall,
+										healthPU, goldPU};//things to spawn (keep track of ratios)
 		
 		lastSpawnPos = transform.position;//save current position for spawning
 	}
@@ -40,24 +43,25 @@ public class Spawner : MonoBehaviour {
 			for(int i = 0; i <= spawnPerWave; i++)
 			{
 				int p = Random.Range(0,spawnArray.Length);//randomly pick which thing to spawn
-				GameObject go = Instantiate(spawnArray[p], transform.position, transform.rotation) as GameObject; //spawn thing
-				//adjust height to make sure its on the surface of the planet
-				go.transform.parent = planet; // for rotating and following
+				GameObject go = SpawnObject(spawnArray[p]);
 				
-				RaycastHit hit = new RaycastHit();
-				//for aligning mesh to planet FIX THIS OMG
-				if(go.collider.Raycast(new Ray(go.transform.position, -go.transform.up), out hit, 100f))
-				{	
-					
-					go.transform.position = hit.point;
-				}
+				//GameObject go = Instantiate(spawnArray[p], transform.position, transform.rotation) as GameObject; //spawn thing
+				//go.transform.parent = planet; // for rotating and following
+				
+				//align to planet
+				//RaycastHit hit = new RaycastHit();
+				//if(Physics.Raycast(new Ray(go.transform.position, -go.transform.up), out hit, 1000f) && go.tag != "PowerUp")
+				//{	
+				//	go.transform.position = hit.point;
+				//}
+				
 				int n = Random.Range(0,startPos.Length);//randomly pick spawn location
 				while(posException.Contains(n))
 				{
 					n = Random.Range(0,startPos.Length);//repick location because it was excluded
 				}
 				posException.Add(n);//add position to exclusion list so we dont spawn multiple things on the same spot
-				
+				go.transform.RotateAround (Vector3.zero, transform.forward, startPos[n]);//rotate to spawn location
 				if(spawnArray[p].tag == "Wall" && !wallSpawned)//if wall is spawned we exclude more points
 				{
 					GameObject temp = SpawnObject(spawnArray[p]);//spawn other wall
@@ -75,7 +79,7 @@ public class Spawner : MonoBehaviour {
 					wallSpawned = false;
 				}
 				
-				go.transform.RotateAround (Vector3.zero, transform.forward, startPos[n]);//rotate to spawn location
+				
 		
 			}
 		}	
@@ -86,12 +90,12 @@ public class Spawner : MonoBehaviour {
 	{
 		GameObject go = Instantiate(ob, transform.position, transform.rotation) as GameObject; //spawn thing
 		go.transform.parent = planet; // for rotating and following
-		//RaycastHit hit = new RaycastHit();
-		//for aligning mesh to planet FIX THIS OMG
-//		if(go.collider.Raycast(new Ray(go.transform.position, -go.transform.up), out hit, 100f))
-//		{	
-//			go.transform.position = hit.point;
-//		}
+		//align to planet
+		RaycastHit hit = new RaycastHit();
+		if(Physics.Raycast(new Ray(go.transform.position, -go.transform.up), out hit, 1000f) && go.tag != "PowerUp")
+		{	
+			go.transform.position = hit.point;
+		}
 
 		return go;
 	}

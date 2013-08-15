@@ -12,7 +12,7 @@ public class JuggernautMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.RotateAround(Vector3.zero, transform.right, -3f * Time.deltaTime);//move along surface of planet
+		transform.RotateAround(Vector3.zero, transform.right, 3f * Time.deltaTime);//move along surface of planet
 	}
 	
 	void OnTriggerEnter (Collider hit)
